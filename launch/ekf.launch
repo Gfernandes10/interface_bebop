@@ -1,0 +1,22 @@
+<!-- ekf.launch -->
+<launch>
+  <!-- Publica a transformação entre o frame de odometria e o frame base do robô -->
+  <node pkg="tf" type="static_transform_publisher" name="odom_broadcaster" args="0 0 0 0 0 0 base_link odom 100" />
+
+  <!-- Configuração do EKF -->
+  <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
+    <param name="output_frame" value="base_link" />
+    <param name="base_footprint_frame" value="base_link" />
+    <param name="freq" value="30.0" />
+    <param name="sensor_timeout" value="1.0" />
+
+    <!-- Adicione os tópicos de entrada (sensores) que você deseja fusar -->
+    <param name="odom_used" value="true" />
+    <param name="odom" value="/bebop2/odometry_sensor1/pose_with_covariance" />
+    <param name="aruco_used" value="true" />
+    <param name="aruco" value="/robot_aruco_pose" />
+    <remap from="/odom" to="/bebop2/odometry_sensor1/pose_with_covariance" />
+    <remap from="/vo" to="/robot_aruco_pose" />
+    <!-- Outras configurações conforme necessário -->
+  </node>
+</launch>
