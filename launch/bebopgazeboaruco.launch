@@ -66,7 +66,7 @@
     <node name="kalman_filter_node" pkg="interface_bebop" type="Kalman.py" />
   </group>    
     <node name="RobotPoseInWorld" pkg="interface_bebop" type="RobotPoseInWorldtf.py" >      
-      <param name="TagPx" value="0.5" />
+      <param name="TagPx" value="0.7" />
       <param name="TagPy" value="0.0" />
       <param name="TagPz" value="1.0" />      
       <param name="TagRoll" value="0.0" />  
